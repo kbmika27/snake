@@ -2,16 +2,16 @@ package snakecamel;
 
 public class SnakeCamelUtil {
 
-	public static String snakeToCamelcase(String snake_case) {
-		String[] words = snake_case.split("_");
+	public static String snakeToCamelcase(String snake_case) {//キャメルに
+		String[] words = snake_case.split("_");//_で分割
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < words.length - 1; i++) {
+		for (int i = 0; i < words.length; i++) {
 			sb.append(capitalize(words[i]));
 		}
 		return new String(sb);
 	}
 	 
-	public static String camelToSnakecase(String camelcase) {
+	public static String camelToSnakecase(String camelcase) {//スネークに
 		StringBuilder sb = new StringBuilder();
 		int j = 0;
 		for (int i = 0; i < camelcase.length(); i++) {
@@ -22,7 +22,7 @@ public class SnakeCamelUtil {
 					sb.append("_");
 				}
 				sb.append(Character.toLowerCase(c));
-				j = i;
+				j = i+1;
 			}
 		}
 		sb.append(camelcase.substring(j));
@@ -33,7 +33,7 @@ public class SnakeCamelUtil {
 		char first = s.charAt(0);
 		char upperFirst = Character.toUpperCase(first);
 		String rest = s.substring(1);
-		return upperFirst + rest;
+		return upperFirst +rest;
 	}
 
 	static String uncapitalize(String s) {
@@ -41,6 +41,10 @@ public class SnakeCamelUtil {
 		char lowerFirst = Character.toLowerCase(first);
 		String rest = s.substring(1);
 		return lowerFirst + rest;
+	}
+	public static void main(String[]args){
+		System.out.println(snakeToCamelcase("abc_def_ghi"));
+		System.out.println(camelToSnakecase("AbcDefGhi"));
 	}
 	
 }
